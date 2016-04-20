@@ -18,8 +18,12 @@ describe Oystercard do
 
 	  it 'cannot top up above the balance limit' do
 	    subject.top_up(Oystercard::BALANCE_LIMIT)
-	    expect { subject.top_up 1}.to raise_error "Your balance cannot exceed #{Oystercard::BALANCE_LIMIT}"
+	    expect{ subject.top_up 1}.to raise_error "Your balance cannot exceed #{Oystercard::BALANCE_LIMIT}"
 	  end
+
+	  it "discounts fare after travel" do
+	  	subject.top_up(10)
+	  	expect{ subject.touch_out}.to change{ balance }.by (Oystercard::Minimum_Fare)
 	end
   
   context "contact" do
