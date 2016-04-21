@@ -9,7 +9,7 @@ class Oystercard
 		@balance = 0
 		@entry_station = nil
 		@exit_station = nil
-    @journey_track = []
+    #@journey_track = []
 	end
 
 	def top_up amount
@@ -30,14 +30,14 @@ class Oystercard
 	def touch_out station
 		if !in_journey?
 			@exit_station = station
-			deduct PENALTY_FAIR
-			current_journey = { entrystation: "Failed to check in", exitstation: @exit_station }
-			@journey_track.push(current_journey)
+			# deduct PENALTY_FAIR
+		#	current_journey = { entrystation: "Failed to check in", exitstation: @exit_station }
+		#	@journey_track.push(current_journey)
 		else
 			@exit_station = station
-	    current_journey = { entrystation: @entry_station, exitstation: @exit_station }
-	    @journey_track.push(current_journey)
-			@entry_station = nil
+	    # current_journey = { entrystation: @entry_station, exitstation: @exit_station }
+	  #   @journey_track.push(current_journey)
+			# @entry_station = nil
 		end
   end
 
@@ -45,17 +45,21 @@ class Oystercard
 		!!entry_station
 	end
 
+
 	def deduct fare
 		@balance -= fare
 	end
 
-	private
-
-	def fare
-		1
-	end
-
-	def journey
-	end
-
 end
+
+
+# 	private
+
+# 	def fare
+# 		1
+# 	end
+
+# 	def journey
+# 	end
+
+# end
