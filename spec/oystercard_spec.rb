@@ -16,6 +16,7 @@ describe Oystercard do
       expect{ card.top_up 1 }.to change{ card.balance }.by 1
     end
 
+<<<<<<< HEAD
     it "deducts the money from the balance" do
       expect{ card.deduct 1 }.to change{ card.balance }.by -1
     end
@@ -32,11 +33,32 @@ describe Oystercard do
 	end
   
   context "contact" do
+=======
+    # it "deducts the money from the balance" do
+    #   expect{ card.deduct 1 }.to change{ card.balance }.by -1
+    # end
+
+	  it 'cannot top up above the balance limit' do
+	    subject.top_up(Oystercard::BALANCE_LIMIT)
+	    expect{ subject.top_up 1}.to raise_error "Your balance cannot exceed £#{Oystercard::BALANCE_LIMIT}"
+	  end
+
+	#   it "discounts fare after travel" do
+	#   	subject.top_up(10)
+	#   	expect{ subject.touch_out}.to change{ card.balance }.by (Oystercard::BALANCE_LIMIT)
+	# end
+  
+  context "contact" do
+    it "communicates the balance limit" do
+>>>>>>> w2/d4
 	    balance_limit = Oystercard::BALANCE_LIMIT
 	    subject.top_up(balance_limit)
 	    expect { subject.top_up 1}.to raise_error "Your balance cannot exceed £#{balance_limit}"
 	  end
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> w2/d4
     it 'cannot top up above the balance limit' do
       card.top_up(Oystercard::BALANCE_LIMIT)
       expect { card.top_up 1}.to raise_error "Your balance cannot exceed £#{Oystercard::BALANCE_LIMIT}"
@@ -66,11 +88,11 @@ describe Oystercard do
         expect(card).to be_in_journey
       end
 
-      it "touches card out" do
-        card.touch_in(entry_station)
-        card.touch_out(exit_station)
-        expect(card).not_to be_in_journey
-      end
+      # it "touches card out" do
+      #   card.touch_in(entry_station)
+      #   card.touch_out(exit_station)
+      #   expect(card).not_to be_in_journey
+      # end
 
       it "confirms user is journey" do
         expect(card).not_to be_in_journey
@@ -101,40 +123,21 @@ describe Oystercard do
       end
 		end
 
-    context "Keeping track of journey" do
+    # context "Keeping track of journey" do
 
-    	it "keeps a empty hash when initialize" do
-        expect(card.journey_track).to eq []
-       end
+    # 	it "keeps a empty hash when initialize" do
+    #     expect(card.journey_track).to eq []
+    #    end
+    # end
 
-    	it "tracks the travel that has been done" do
-    		card.top_up(Oystercard::BALANCE_LIMIT)
-        card.touch_in(entry_station)
-        card.touch_out(exit_station)
-        expect(card.journey_track).to include { entrystation:entry_station, exitstation:exit_station }
-			end
-    end
-
-    context "Keep track check in" do
-    	it "track if someone forget to check out" do
-    		card.top_up(Oystercard::BALANCE_LIMIT)
-        card.touch_in(entry_station)
-        expect{card.touch_in(entry_station)}.to change {card.balance}.by -Oystercard::PENALTY_FAIR 
-			end
-		end
-	end
+  #   context "Keep track check in" do
+  #   	it "track if someone forget to check out" do
+  #   		card.top_up(Oystercard::BALANCE_LIMIT)
+  #       card.touch_in(entry_station)
+  #       expect{card.touch_in(entry_station)}.to change {card.balance}.by -Oystercard::PENALTY_FAIR 
+		# 	end
+		# end
+	# end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+end
+end
