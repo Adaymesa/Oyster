@@ -15,13 +15,9 @@ describe Oystercard do
     it "tops up the balance" do
       expect{ card.top_up 1 }.to change{ card.balance }.by 1
     end
-
-<<<<<<< HEAD
     it "deducts the money from the balance" do
       expect{ card.deduct 1 }.to change{ card.balance }.by -1
     end
-
-<<<<<<< HEAD
 	  it 'cannot top up above the balance limit' do
 	    subject.top_up(Oystercard::BALANCE_LIMIT)
 	    expect{ subject.top_up 1}.to raise_error "Your balance cannot exceed #{Oystercard::BALANCE_LIMIT}"
@@ -33,7 +29,6 @@ describe Oystercard do
 	end
   
   context "contact" do
-=======
     # it "deducts the money from the balance" do
     #   expect{ card.deduct 1 }.to change{ card.balance }.by -1
     # end
@@ -50,21 +45,14 @@ describe Oystercard do
   
   context "contact" do
     it "communicates the balance limit" do
->>>>>>> w2/d4
 	    balance_limit = Oystercard::BALANCE_LIMIT
 	    subject.top_up(balance_limit)
 	    expect { subject.top_up 1}.to raise_error "Your balance cannot exceed £#{balance_limit}"
-	  end
-<<<<<<< HEAD
-=======
-=======
->>>>>>> w2/d4
     it 'cannot top up above the balance limit' do
       card.top_up(Oystercard::BALANCE_LIMIT)
       expect { card.top_up 1}.to raise_error "Your balance cannot exceed £#{Oystercard::BALANCE_LIMIT}"
     end
   end
->>>>>>> w2/d4
 
   context "contact" do
     it "has contact" do
